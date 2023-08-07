@@ -1,33 +1,27 @@
 #include "lists.h"
 
-
 /**
- * check_cycle - Checks if a singly linked list has a
- * cycle in it using Floyd's cycle detection algorithm.
+ * check_cycle - Checks if a linked list contains a cycle using
+ * Floyd's cycle detection algorithm.
+ * @list: A pointer to the head of the linked list.
  *
- * @list:A pointer to the head of the linked list.
- *
- * Return: 1 if there is a cycle, 0 if there is no cycle.
+ * Return: 1 if the list has a cycle, 0 if it doesn't.
  */
-
-
-int check_cycle(struct listint_t *list)
+int check_cycle(listint_t *list)
 {
-	if (list == NULL)
+	listint_t *lag = list;
+	listint_t *quick = list;
+
+	if (!list)
+		return (0);
+
+	while (lag && quick && quick->next)
 	{
-	return (0);
+		lag = lag->next;
+		quick = quick->next->next;
+		if (lag == quick)
+			return (1);
 	}
 
-	struct listint_t *quick_case = list;
-	struct listint_t *slow_case = list->next;
-
-	while (slow_case != NULL && slow_case->next != NULL)
-	{
-	if (quick_case == slow_case)
-	{
-	return (1);
-}	quick_case = quick_case->next;
-	slow_case = slow_case->next->next;
-}
 return (0);
 }
