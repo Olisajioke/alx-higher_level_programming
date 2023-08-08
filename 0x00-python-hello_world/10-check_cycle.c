@@ -2,7 +2,7 @@
 
 /**
  * check_cycle - Checks if a linked list contains a cycle using
- * Floyd's cycle detection algorithm.
+ *
  * @list: A pointer to the head of the linked list.
  *
  * Return: 1 if the list has a cycle, 0 if it doesn't.
