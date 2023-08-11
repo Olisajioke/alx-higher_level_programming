@@ -11,7 +11,6 @@ if __name__ == "__main__":
         num_of_arg = len(sys.argv)
         if num_of_arg != 4:
             print("Usage: ./100-my_calculator.py <arg1><operator><arg2>")
-            print("\n")
             sys.exit(1)
 
         a = int(a)
@@ -31,7 +30,6 @@ if __name__ == "__main__":
             print("{} - {} = {}".format(a, b, result))
         else:
             print("Unknown Operator. Available Operators: +, -, *, and /")
-            print("\n")
             sys.exit(1)
 
     arguments = sys.argv[1:]
