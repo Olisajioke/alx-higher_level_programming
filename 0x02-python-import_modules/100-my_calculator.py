@@ -9,8 +9,8 @@ if __name__ == "__main__":
 
     def my_calculator(a, operator, b):
         num_of_arg = len(sys.argv)
-        if num_of_arg != 3:
-            print("Usage: ./100-my_calculator.py <arg1><operator><arg2>")
+        if num_of_arg != 4:
+            print("Usage: ./100-my_calculator.py <arg1><operator><arg2>\n")
             sys.exit(1)
 
         a = int(a)
@@ -29,7 +29,7 @@ if __name__ == "__main__":
             result = sub(a, b)
             print("{} - {} = {}".format(a, b, result))
         else:
-            print("Unknown Operator. Available Operators: +, -, *, and /")
+            print("Unknown Operator. Available Operators: +, -, *, and /,\n")
             sys.exit(1)
 
     arguments = sys.argv[1:]
