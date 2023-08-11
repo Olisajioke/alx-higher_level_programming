@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     def my_calculator(a, operator, b):
         num_of_arg = len(sys.argv)
-        if num_of_arg != 4:
+        if num_of_arg != 3:
             print("Usage: ./100-my_calculator.py <arg1><operator><arg2>")
             sys.exit(1)
 
