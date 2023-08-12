@@ -1,9 +1,12 @@
 #!/usr/bin/python3
+
 def multiple_returns(sentence):
     ''' Functions to print the first item and
-        total lenght of the tuple
+        total lenght
     '''
     if sentence == '':
         return (0, None)
 
-    return(len(sentence), sentence[0])
+    lenght = len(sentence)
+    first_char = sentence[0]
+    return(lenght, first_char)
