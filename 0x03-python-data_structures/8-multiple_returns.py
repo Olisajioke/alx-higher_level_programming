@@ -6,6 +6,4 @@ def multiple_returns(sentence):
     if sentence == '':
         return (0, None)
 
-    first_char = sentence[0]
-    lenght = len(sentence)
-    return(lenght, first_char)
+    return(len(sentence), sentence[0])
