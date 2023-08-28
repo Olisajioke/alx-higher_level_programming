@@ -1,5 +1,5 @@
 #!/usr/bin/python3
 
-def trigger_named_error(message=""):
-    """Cause a NameError exception with a specified message."""
+
+def raise_exception_msg(message=""):
     raise NameError(message)
