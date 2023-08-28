@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 
-def safe_print_division(num1, num2):
-    """Computes the division of num1 by num2 and return the result."""
-    result = None
+
+def safe_print_division(a, b):
     try:
-        result = num1 / num2
-    except (TypeError, ZeroDivisionError):
-        result = None
+        result = a / b
+    except ZeroDivisionError:
+        print("Error: Division by zero!")
+        return None
+    except Exception as e:
+        print("An error occurred:", e)
+        return None
     finally:
-        print("Computed result: {}".format(result))
-    return (result)
+        print("Inside result: {}".format(result))
