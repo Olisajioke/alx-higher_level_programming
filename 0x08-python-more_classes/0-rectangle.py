@@ -1,7 +1,7 @@
-#!/usr/bin/env python
-"""A simple Python class named Rectangle that defines a rectangle."""
+#!/usr/bin/python3
+"""Module that defines an empty Rectangle class."""
 
 
 class Rectangle:
-    """Class Representing Rectangle"""
+    """Empty Rectangle class."""
     pass
