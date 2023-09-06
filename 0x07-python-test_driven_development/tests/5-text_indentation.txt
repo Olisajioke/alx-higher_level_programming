@@ -1,0 +1,137 @@
+================================
+How to Use 5-text_indentation.py
+================================
+
+This module introduces a text-indentation function called ``text_indentation(text)``.
+
+Usage
+=====
+
+Text is formatted with two new lines added after each of the characters ``.``, ``?``,
+and ``:``.
+
+::
+
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+    >>> text_indentation("Greetings?")
+    Greetings?
+    <BLANKLINE>
+
+No spaces are printed at the beginning of a line.
+
+::
+
+    >>> text_indentation("   Hey there!")
+    Hey there!
+    <BLANKLINE>
+
+::
+
+    >>> text_indentation("          ")
+
+Similarly, no spaces are printed at the end of each printed line.
+
+::
+
+    >>> text_indentation("Hello.   ")
+    Hello.
+    <BLANKLINE>
+
+::
+
+    >>> text_indentation("    Wow, this is awesome.    ")
+    Wow, this is awesome.
+    <BLANKLINE>
+
+New lines are only added for the characters ``.``, ``?``, and ``:``.
+Text not ending with one of these characters is not followed by a new line.
+
+::
+
+    >>> text_indentation("No period at the end, just bad grammar")
+    No period at the end, just bad grammar
+
+New lines within a string are printed as usual.
+
+::
+
+    >>> text_indentation("Let's print a new-line! Here we go:\nPrinted.")
+    Let's print a new-line! Here we go:
+    <BLANKLINE>
+    <BLANKLINE>
+    Printed.
+    <BLANKLINE>
+
+::
+
+    >>> text_indentation("\n\n\n We just printed three new lines.")
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    We just printed three new lines.
+    <BLANKLINE>
+
+::
+    >>> text_indentation("A sneaky \n new line.")
+    A sneaky 
+    new line.
+    <BLANKLINE>
+
+An example with various characters:
+
+::
+
+    >>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing "
+    ... "elit. What now? How about this: More pleasure? I understand, he said, "
+    ... "it seems you feel nothing. Move it to moderation and self-control, "
+    ... "which is the moderation of desires obedient to reason. If you say that, "
+    ... "we've won. Then, with various words, we completed the six stadia from "
+    ... "Dipylon. But if you want something else, later. Affecting each soul and "
+    ... "this, I say. Would that they say another is happier! Now you would see "
+    ... "ruins.") # doctest: +NORMALIZE_WHITESPACE
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <BLANKLINE>
+    What now?
+    <BLANKLINE>
+    How about this:
+    <BLANKLINE>
+    More pleasure?
+    <BLANKLINE>
+    I understand, he said, it seems you feel nothing.
+    <BLANKLINE>
+    Move it to moderation and self-control, which is the moderation of desires obedient to reason.
+    <BLANKLINE>
+    If you say that, we've won.
+    <BLANKLINE>
+    Then, with various words, we completed the six stadia from Dipylon.
+    <BLANKLINE>
+    But if you want something else, later.
+    <BLANKLINE>
+    Affecting each soul and this, I say.
+    <BLANKLINE>
+    Would that they say another is happier!
+    <BLANKLINE>
+    Now you would see ruins.
+
+Invalid Text
+============
+
+Please note that the parameter ``text`` must be a string; otherwise, a TypeError will be raised.
+
+::
+
+    >>> text_indentation(42)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+::
+
+    >>> text_indentation({"one": 1, "two": 2})
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+::
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    TypeError: text must be a string
