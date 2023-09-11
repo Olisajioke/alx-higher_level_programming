@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+import unittest
+
+class TestBaseGeometry(unittest.TestCase):
+
+    def test_area_not_implemented(self):
+        bg = BaseGeometry()
+        with self.assertRaises(Exception) as context:
+            bg.area()
+        self.assertEqual(str(context.exception), "area() is not implemented")
+
+    def test_integer_validator_valid(self):
+        bg = BaseGeometry()
+        # Test passing a positive integer
+        self.assertIsNone(bg.integer_validator("name", 5))
+
+    def test_integer_validator_invalid_type(self):
+        bg = BaseGeometry()
+        # Test passing a non-integer argument
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator("name", "5")
+        self.assertEqual(str(context.exception), "name must be an integer")
+
+        # Test passing a boolean value
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator("name", True)
+        self.assertEqual(str(context.exception), "name must be an integer")
+
+    def test_integer_validator_invalid_value(self):
+        bg = BaseGeometry()
+        # Test passing a negative value
+        with self.assertRaises(ValueError) as context:
+            bg.integer_validator("name", -5)
+        self.assertEqual(str(context.exception), "name must be greater than 0")
+
+        # Test passing a zero value
+        with self.assertRaises(ValueError) as context:
+            bg.integer_validator("name", 0)
+        self.assertEqual(str(context.exception), "name must be greater than 0")
+
+    def test_integer_validator_missing_args(self):
+        bg = BaseGeometry()
+        # Test passing one argument to integer_validator
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator("name")
+        self.assertEqual(
+            str(context.exception),
+            "integer_validator() missing 1 required positional argument: 'value'"
+        )
+
+        # Test integer_validator with no arguments
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator()
+        self.assertEqual(
+            str(context.exception),
+            "integer_validator() missing 2 required positional arguments: 'name' and 'value'"
+        )
+
+        # Test passing three arguments to integer_validator
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator("name", 1, 2)
+        self.assertEqual(
+            str(context.exception),
+            "integer_validator() takes 3 positional arguments but 4 were given"
+        )
+
+    def test_area_invalid_args(self):
+        bg = BaseGeometry()
+        # Test passing one argument to area method
+        with self.assertRaises(TypeError) as context:
+            bg.area(5)
+        self.assertEqual(
+            str(context.exception),
+            "area() takes 1 positional argument but 2 were given"
+        )
+
+        # Test passing two arguments to area method
+        with self.assertRaises(TypeError) as context:
+            bg.area(5, 5)
+        self.assertEqual(
+            str(context.exception),
+            "area() takes 1 positional argument but 3 were given"
+        )
+
+    def test_integer_validator_invalid_types(self):
+        bg = BaseGeometry()
+        # Test passing tuple to method
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator("age", (4,))
+        self.assertEqual(str(context.exception), "age must be an integer")
+
+        # Test passing list to method
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator("age", [3])
+        self.assertEqual(str(context.exception), "age must be an integer")
+
+        # Test passing dict to method
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator("age", {3, 4})
+        self.assertEqual(str(context.exception), "age must be an integer")
+
+        # Test passing None to method
+        with self.assertRaises(TypeError) as context:
+            bg.integer_validator("age", None)
+        self.assertEqual(str(context.exception), "age must be an integer")
+
+if __name__ == '__main__':
+    unittest.main()

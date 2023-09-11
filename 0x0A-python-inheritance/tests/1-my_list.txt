@@ -1,0 +1,104 @@
+# Test for 1-my_list.py
+-------------------------------------------
+
+# Case A: import
+>>> MyList = __import__('1-my_list').MyList
+>>>
+
+-------------------------------------------
+
+# Case B: undefined instance
+
+>>> MyList = __import__('1-my_list').MyList
+>>> my_list2.print_sorted()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'my_list2' is not defined
+>>>
+
+-------------------------------------------
+
+# Case C: common case
+
+>>> my_list = MyList()
+>>> my_list.append(7)
+>>> my_list.append(3)
+>>> my_list.append(6)
+>>> my_list.append(2)
+>>> my_list.append(8)
+>>> print(my_list)
+[7, 3, 6, 2, 8]
+>>> my_list.print_sorted()
+[2, 3, 6, 7, 8]
+>>> print(my_list)
+[7, 3, 6, 2, 8]
+>>>
+
+-------------------------------------------
+
+# Case D: passed a list
+
+>>> a = [5, 2, 8]
+>>> my_list = MyList(a)
+>>> my_list.print_sorted()
+[2, 5, 8]
+>>>
+
+-------------------------------------------
+
+# Case E: empty list
+
+>>> a = []
+>>> my_list = MyList(a)
+>>> my_list.print_sorted()
+[]
+>>>
+
+-------------------------------------------
+
+# Case F: unique numbers
+
+>>> my_list = MyList()
+>>> my_list.append(9)
+>>> my_list.print_sorted()
+[9]
+>>> print(my_list)
+[9]
+>>>
+
+-------------------------------------------
+
+# Case G: same numbers
+
+>>> my_list2 = MyList()
+>>> my_list2.append(3)
+>>> my_list2.append(3)
+>>> my_list2.append(3)
+>>> my_list2.append(3)
+>>> my_list2.print_sorted()
+[3, 3, 3, 3]
+>>>
+
+-------------------------------------------
+
+# Case H: parent object
+>>> my_list = [4, 6, 1]
+>>> my_list.print_sorted()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'print_sorted'
+>>>
+
+-------------------------------------------
+
+# Case I: negative numbers
+
+>>> MyList = __import__('1-my_list').MyList
+>>> my_list = MyList()
+>>> my_list.append(9)
+>>> my_list.append(7)
+>>> my_list.append(-3)
+>>> my_list.append(5)
+>>> my_list.append(-7)
+>>> my_list.print_sorted()
+[-7, -3, 5, 7, 9]
