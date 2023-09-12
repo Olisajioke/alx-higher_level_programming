@@ -1,11 +1,11 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+"""Defines a module that prints a list in asccending order."""
+
 
 class MyList(list):
-    def print_sorted(self):
-        """
-        Print the list in ascending sorted order.
+    """Implements a module for the built-in list class"""
 
-        This method sorts the list in ascending order and then prints it.
-        """
+    def print_sorted(self):
+        """This method sorts the list in ascending order and then prints it."""
         sorted_list = sorted(self)
         print(sorted_list)
