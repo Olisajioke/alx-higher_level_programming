@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+"""Defines an empty class called BaseGeometry"""
+
 
 class BaseGeometry:
-    """
-    This is an empty base class for geometry-related operations.
-    It can be used as a base for defining more specific geometry classes.
-    """
+    """This is an empty base class for geometry-related operations."""
     pass
