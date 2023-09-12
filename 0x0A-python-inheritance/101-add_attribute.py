@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 def add_attribute(obj, attr_name, attr_value):
     """
