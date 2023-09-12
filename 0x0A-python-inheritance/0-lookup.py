@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
+"""A module that defines an object attribute lookup function"""
 
 
 def lookup(obj):
-    """
-    Return a list of available attributes and methods of an object.
-
-    Args:
-    obj (object): The object to inspect.
-
-    Returns:
-    list: A list containing the names of attributes and methods.
-    """
+    """Return a list of available attributes and methods of an object."""
     attributes_and_methods = []
     for name in dir(obj):
         if callable(getattr(obj, name)) or hasattr(obj, name):
