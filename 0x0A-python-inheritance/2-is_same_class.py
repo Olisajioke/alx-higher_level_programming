@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""A modules that defines a class-checking function."""
+
 
 def is_same_class(obj, a_class):
     """
