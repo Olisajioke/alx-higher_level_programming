@@ -7,14 +7,11 @@ import turtle
 
 
 class Base:
-    """
-    The Base class for managing unique identifiers.
-    """
+    """The Base class for managing unique identifiers"""
     __nb_objects = 0
 
     def __init__(self, id=None):
         """Initializes an instance of the Base class.
-
         Args:
             id (int, optional): The unique identifier for the instance.
         """
@@ -27,7 +24,6 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """Returns the JSON string representation of a list of dictionaries.
-
         Args:
             list_dictionaries (list): A list of dictionaries.
 
@@ -36,12 +32,11 @@ class Base:
         """
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
-        return json.dumps(list_dictionaries)
+        return json.dumps(list_dictionaries, sort_keys=True)
 
     @staticmethod
     def from_json_string(json_string):
         """Returns the list of dictionaries from a JSON string representation.
-
         Args:
             json_string (str): A string representing a list of dictionaries.
 
@@ -55,18 +50,18 @@ class Base:
     @classmethod
     def save_to_file(cls, list_objs):
         """Writes the JSON string representation of list_objs to a file.
-
         Args:
             list_objs (list): A list of instances that inherit from Base.
 
         Raises:
-            TypeError: If list_objs is not a list of instances
-            that inherit from Base.
+            TypeError: If list_objs is not a list of
+            instances that inherit from Base.
         """
         if list_objs is None:
             list_objs = []
         if not all(isinstance(obj, cls) for obj in list_objs):
-            raise TypeError("list_objs must be a list of instances that inherit from Base")
+            raise TypeError("list_objs must be a list of instances" +
+                            "that inherit from Base")
 
         filename = cls.__name__ + ".json"
         with open(filename, mode="w") as file:
@@ -76,15 +71,12 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """Returns an instance with all attributes
-        already set based on the provided dictionary.
-
+        """Returns an instance with all attributes set based on the dictionary
         Args:
             **dictionary: A dictionary containing attribute values.
 
         Returns:
-            cls: An instance of the class with
-            attributes set from the dictionary.
+            cls: An instance of class with attributes set from dictionary.
         """
         if cls.__name__ == "Rectangle":
             dummy = cls(1, 1)
@@ -99,7 +91,6 @@ class Base:
     @classmethod
     def load_from_file(cls):
         """Returns a list of instances loaded from a JSON file.
-
         Returns:
             list: A list of instances based on the
             current class (cls) using this method.
@@ -109,27 +100,26 @@ class Base:
             with open(filename, mode="r") as file:
                 json_string = file.read()
                 dictionary_list = cls.from_json_string(json_string)
-                instances_list = [cls.create(**data) for data in dictionary_list]
+                instances_list = [cls.create(**data)
+                                  for data in dictionary_list]
                 return instances_list
         except FileNotFoundError:
             return []
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """
-        Writes the CSV string representation of list_objs to a file.
-
+        """Writes the CSV string representation of list_objs to a file.
         Args:
             list_objs (list): A list of instances that inherit from Base.
 
         Raises:
-            TypeError: If list_objs is not a list
-            of instances that inherit from Base.
+            TypeError: If list_objs is not list of instances inherit from Base
         """
         if list_objs is None:
             list_objs = []
         if not all(isinstance(obj, cls) for obj in list_objs):
-            raise TypeError("list_objs must be a list of instances that inherit from Base")
+            raise TypeError("list_objs must be a list of instances" +
+                            "that inherit from Base")
 
         filename = cls.__name__ + ".csv"
         with open(filename, mode="w", newline="") as file:
@@ -140,17 +130,15 @@ class Base:
                 elif cls.__name__ == "Square":
                     row = [obj.id, obj.size, obj.x, obj.y]
                 else:
-                    raise ValueError("Unsupported class for CSV serialization")
+                    raise ValueError("Unsupported class for" +
+                                     "CSV serialization")
                 writer.writerow(row)
 
     @classmethod
     def load_from_file_csv(cls):
-        """
-        Returns a list of instances loaded from a CSV file.
-
+        """Returns a list of instances loaded from a CSV file.
         Returns:
-            list: A list of instances based on the
-            current class (cls) using this method.
+            list: list of instances based on current class using this method.
         """
         filename = cls.__name__ + ".csv"
         try:
@@ -174,7 +162,8 @@ class Base:
                             "y": int(row[3]),
                         }
                     else:
-                        raise ValueError("Unsupported class for CSV deserialization")
+                        raise ValueError("Unsupported class for" +
+                                         "CSV deserialization")
                     instance = cls.create(**data)
                     instances_list.append(instance)
                 return instances_list
@@ -183,9 +172,7 @@ class Base:
 
     @staticmethod
     def draw(list_rectangles, list_squares):
-        """
-        Opens a window and draws all the Rectangles and Squares.
-
+        """Opens a window and draws all the Rectangles and Squares.
         Args:
             list_rectangles (list): A list of Rectangle instances.
             list_squares (list): A list of Square instances.

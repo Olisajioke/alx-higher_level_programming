@@ -4,14 +4,10 @@ from models.base import Base
 
 
 class Rectangle(Base):
-    """
-    The Rectangle class, inheriting from the Base class.
-    """
+    """The Rectangle class, inheriting from the Base class."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """
-        Initializes an instance of the Rectangle class.
-
+        """Initializes an instance of the Rectangle class.
         Args:
             width (int): The width of the rectangle.
             height (int): The height of the rectangle.
@@ -27,6 +23,10 @@ class Rectangle(Base):
             id (int): The unique identifier for the rectangle.
         """
         super().__init__(id)
+        self.__width = 0
+        self.__height = 0
+        self.__x = 0
+        self.__y = 0
         self.width = width
         self.height = height
         self.x = x
@@ -89,18 +89,14 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
-        """
-        Calculates and returns the area of the Rectangle instance.
-
+        """Calculates and returns the area of the Rectangle instance.
         Returns:
             int: The area of the rectangle.
         """
         return self.__width * self.__height
 
     def display(self):
-        """
-        Prints the Rectangle instance with '#' characters, taking into account x and y.
-
+        """Prints the Rectangle instance with '#' chars, taking into acct x&y.
         The x and y coordinates determine the position of the rectangle.
         """
         for _ in range(self.__y):
@@ -109,56 +105,52 @@ class Rectangle(Base):
             print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
-        """
-        Returns a string representation of the Rectangle instance.
-
-        Returns:
-            str: A formatted string representation of the rectangle.
-        """
-        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
+        """Return the print() and str() representation of the Rectangle."""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id,
+                                                       self.x, self.y,
+                                                       self.width, self.height)
 
     def update(self, *args, **kwargs):
-        """Updates the Rectangle instance attributes using *args and **kwargs.
-
+        """Updates the Rectangle instance attributes using *args & **kwargs.
         Args:
-            *args: Variable number of arguments in the order: id, width,
-            height, x, y.
+            *args: Variable no. of arguments in order: id, width, height,x,y.
             **kwargs: Arbitrary keyword arguments for attribute updates.
         """
         if args:
             if len(args) >= 1:
-                self.id = args[0]
+                self.x = args[0]
             if len(args) >= 2:
-                self.width = args[1]
+                self.y = args[1]
             if len(args) >= 3:
-                self.height = args[2]
+                self.id = args[2]
             if len(args) >= 4:
-                self.x = args[3]
+                self.height = args[3]
             if len(args) >= 5:
-                self.y = args[4]
+                self.width = args[4]
         elif kwargs:
             for key, value in kwargs.items():
-                if key == 'id':
-                    self.id = value
-                elif key == 'width':
-                    self.width = value
-                elif key == 'height':
-                    self.height = value
-                elif key == 'x':
+                if key == 'x':
                     self.x = value
                 elif key == 'y':
                     self.y = value
+                elif key == 'id':
+                    self.id = value
+                elif key == 'height':
+                    self.height = value
+                elif key == 'width':
+                    self.width = value
 
     def to_dictionary(self):
-        """Returns a dictionary representation of the Rectangle instance.
+        """
+        Returns a dictionary representation of the Rectangle instance.
 
         Returns:
             dict: A dictionary containing id, width, height, x, and y.
         """
         return {
-            'id': self.id,
+            'x': self.x,
             'width': self.__width,
+            'id': self.id,
             'height': self.__height,
-            'x': self.__x,
-            'y': self.__y
+            'y': self.y
         }
