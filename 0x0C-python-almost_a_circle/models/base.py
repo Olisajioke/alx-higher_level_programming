@@ -3,22 +3,6 @@
 """
 models/base.py: Contains the Base class for managing id attributes.
 """
-
-
-class Base:
-    """The Base class manages id attribute for all other classes"""
-    __nb_objects = 0
-
-    def __init__(self, id=None):
-        """
-        Initialize a new instance of Base.
-
-        Args:
-            id (int, optional): The id for this instance. If not provided,
-            it will be automatically generated.
-=======
-"""This module defines the Base class."""
-
 import json
 import csv
 import turtle
@@ -32,15 +16,12 @@ class Base:
         """Initializes an instance of the Base class.
         Args:
             id (int, optional): The unique identifier for the instance.
->>>>>>> 59777f69d470eabf01922309604f60c3e6bb2a1b
         """
         if id is not None:
             self.id = id
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
-<<<<<<< HEAD
-=======
 
     @staticmethod
     def to_json_string(list_dictionaries):
