@@ -1,5 +1,6 @@
+0-javascript_is_amazing.js
 #!/usr/bin/node
-function add(a, b) {
+function add (a, b) {
   const c = a + b;
   console.log(c);
 }
