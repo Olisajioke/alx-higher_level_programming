@@ -1,28 +1,23 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
-Defines a State class and creates a corresponding MySQL table using SQLAlchemy
+Defines State class inheriting from Base, links to MySQL table 'states'.
 """
+
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
+
+
+eng = create_engine('mysql://username:password@localhost:3306/database_name')
 
 Base = declarative_base()
 
 
 class State(Base):
-    """
-    Represents the 'states' table in MySQL.
-
-    Attributes:
-        id (int): The unique identifier for the state.
-        name (str): The name of the state.
-    """
+    """Class att: 'id' as an auto-generated unique integer (primary key)"""
     __tablename__ = 'states'
+
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     name = Column(String(128), nullable=False)
 
 
-if __name__ == "__main__":
-    engine = create_engine(
-        'mysql+mysqldb://username:password@localhost:3306/database_name', echo=True
-    )
-    Base.metadata.create_all(engine)
+Base.metadata.create_all(eng)
