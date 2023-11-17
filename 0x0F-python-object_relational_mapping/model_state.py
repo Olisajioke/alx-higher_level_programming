@@ -1,17 +1,18 @@
 #!/usr/bin/python3
 """
-Contains the class definition of a City
+Contains State class and Base, an instance of declarative_base()
 """
-from model_state import Base
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 
+my_metadata = MetaData()
+Base = declarative_base(metadata=my_metadata)
 
-class City(Base):
+
+class State(Base):
     """
-    Class that defines each city
+    Class with id and name attributes of each state
     """
-    __tablename__ = 'cities'
+    __tablename__ = 'states'
     id = Column(Integer, unique=True, nullable=False, primary_key=True)
     name = Column(String(128), nullable=False)
-    state_id = Column(Integer, ForeignKey("states.id"), nullable=False)
