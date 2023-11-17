@@ -1,14 +1,26 @@
-#!/usr/bin/python3
-"""State class mapped to the 'states' table in a MySQL db using SQLAlchemy."""
+#!/usr/bin/env python3
+"""
+Defines a State class and creates a corresponding MySQL table using SQLAlchemy
+"""
 
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
 
 class State(Base):
+    """
+    Represents the 'states' table in MySQL
+    """
     __tablename__ = 'states'
-
-    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     name = Column(String(128), nullable=False)
+
+
+if __name__ == "__main__":
+    engine = create_engine(
+        'mysql+mysqldb://username:password@localhost:3306/database_name',
+        echo=True
+    )
+    Base.metadata.create_all(engine)
