@@ -1,23 +1,17 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 """
-Defines State class inheriting from Base, links to MySQL table 'states'.
+Contains the class definition of a City
 """
-
-from sqlalchemy import Column, Integer, String, create_engine
+from model_state import Base
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 
 
-eng = create_engine('mysql://username:password@localhost:3306/database_name')
-
-Base = declarative_base()
-
-
-class State(Base):
-    """Class att: 'id' as an auto-generated unique integer (primary key)"""
-    __tablename__ = 'states'
-
-    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+class City(Base):
+    """
+    Class that defines each city
+    """
+    __tablename__ = 'cities'
+    id = Column(Integer, unique=True, nullable=False, primary_key=True)
     name = Column(String(128), nullable=False)
-
-
-Base.metadata.create_all(eng)
+    state_id = Column(Integer, ForeignKey("states.id"), nullable=False)
